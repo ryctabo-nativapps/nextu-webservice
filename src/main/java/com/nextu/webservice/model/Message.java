@@ -16,12 +16,18 @@
 package com.nextu.webservice.model;
 
 import java.util.Calendar;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
  * @author Gustavo Pacheco <ryctabo@gmail.com>
  * @version 1.0
  */
+@XmlRootElement
+@XmlType(propOrder = {
+    "id", "from", "to", "message", "createDate"
+})
 public class Message {
 
     private long id;
@@ -35,6 +41,7 @@ public class Message {
     private Calendar createDate;
 
     public Message() {
+        this.createDate = Calendar.getInstance();
     }
 
     public Message(long id, String from, String to, String message) {

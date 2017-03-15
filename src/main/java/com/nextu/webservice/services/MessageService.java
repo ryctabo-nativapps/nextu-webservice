@@ -48,18 +48,21 @@ public class MessageService {
     }
 
     private boolean isInvalidID(Long id) {
-        return id != null || id <= 0 || id > this.messages.size() + 1;
+        return id == null || id <= 0 || id > this.messages.size() + 1;
     }
 
     public Message addNewMessage(Message message) {
         message.setId(this.messages.size() + 1);
-        return this.messages.put(message.getId(), message);
+        this.messages.put(message.getId(), message);
+        return message;
     }
 
     public Message updateMessage(Long id, Message message) {
         if (isInvalidID(id))
             return null;
-        return this.messages.put(id, message);
+        message.setId(id);
+        this.messages.put(id, message);
+        return message;
     }
 
     public Message removeMessage(Long id) {
